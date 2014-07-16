@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+<body>
+  <script src="scripts/HTTP.js"></script>
+  <script src="scripts/CSI.js"></script>
+  <script src="scripts/IntervalStore.js"></script>
+  <script>
+    HTTP.get('data/input.txt', function(response) {
+      var data = CSI.parse(response);
+
+      var intervalStore = new IntervalStore();
+      intervalStore.load(data);
+
+      for (var i = 0; i < 100; i++) {
+        console.log("Clicking at point " + i + ": " + JSON.stringify(intervalStore.find(100 * i)));
+      }
+    });
+  </script>
+</body>
+</html>
